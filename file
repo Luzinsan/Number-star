@@ -1,0 +1,94 @@
+//          1         /
+//        2 1 2       /
+//      3 2 1 2 3     /
+//    4 3 2 1 2 3 4   /
+//  5 4 3 2 1 2 3 4 5 /
+//    4 3 2 1 2 3 4   /
+//      3 2 1 2 3     /
+//        2 1 2       /
+//          1         /
+#include <iostream>
+
+void print(int a) 
+{
+	int outer = 1;
+	while (outer <=a) //кол-во строчек в ромбе: от 1 до введённое числа -> первая партия заполнения
+	{
+		int inner = a;//крайнее значение звезды(но до этого выведем пропуски)
+		int count = 1;//позиция в строчке
+
+		while (count <= a)
+		{	
+			if (inner > outer && inner >= 10)
+				std::cout << "   ";//обычные пропуски для чисел >= 10
+			else if (inner > outer)//пропуски для чисел от 1 до 9
+				std::cout << "  ";
+			else
+				std::cout << inner << " ";//числа внутри звезды
+
+			inner--;
+			count++;
+		}
+
+		inner = 2;
+		while (count <= a*2)//тоже самое, только в обратном порядке
+		{
+			if (inner <= outer)
+				std::cout << inner<< " ";
+			else
+				std::cout << "  ";
+			inner++;
+			count++;
+		}
+
+		std::cout << "\n";
+		outer++;
+	}
+
+
+	outer = (a-1);//заполняем вторую нижнюю половину звезды
+	while (outer >= 1) //всё тоже самое, но наоборот
+	{
+		int inner = a;
+		int count = 1;
+		while (count <= a)
+		{
+			if (inner > outer && inner >= 10)
+				std::cout << "   ";
+			else if (inner > outer)
+				std::cout << "  ";
+			else
+				std::cout << inner << " ";
+
+			inner--;
+			count++;
+		}
+
+		inner = 2;
+		while (count <= a*2)
+		{
+			if (inner <= outer)
+			{
+				std::cout << inner++ << " ";
+			}
+			else
+				std::cout << "  ";
+			count++;
+
+		}
+
+		std::cout << "\n";
+		outer--;
+	
+	}
+}
+
+
+
+int main() 
+{
+	std::cout << "Please, enter a number for pyramide: ";
+	int a;
+	std::cin >> a;
+	print(a);
+}
